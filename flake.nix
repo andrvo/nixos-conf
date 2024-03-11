@@ -17,7 +17,7 @@
 
     nixosModules.default = wslin.nixosModules.wsl;
     nixosConfigurations = let 
-      localConf = { config, ... }: 
+      localConf = { config, pkgs, ... }: 
       {
         nix.extraOptions = ''
           experimental-features = nix-command flakes
