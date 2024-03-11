@@ -69,6 +69,8 @@
             networking.hostName = "nixa";
             users.users.${user} = { isNormalUser = true; group = "${user}"; };
             users.groups.${user} = {};
+            boot.loader.systemd-boot.enable = true;
+            boot.loader.efi.canTouchEfiVariables = true;
           }
         ]; # ++ localpkgs.lib.optional (builtins.pathExists /etc/nixos/hardware-configuration.nix) /etc/nixos/hardware-configuration.nix;
       };
