@@ -67,7 +67,7 @@
           {
             networking.hostName = "nixa";
           }
-        ] ++ localpkgs.lib.optional (builtins.pathExists /etc/nixos/hardware.nix) /etc/nixos/hardware.nix;
+        ] ++ localpkgs.lib.optional (builtins.pathExists /etc/nixos/hardware-configuration.nix) /etc/nixos/hardware-configuration.nix;
       };
     };
   };
