@@ -42,7 +42,9 @@ in
 
 	    initExtraFirst = ''
         # adding the SSH key
-        eval $(/mnt/c/Users/avoit/scoop/apps/ssh-agent-wsl/current/ssh-agent-wsl -r)
+        if [ -e /mnt/c/Users/avoit/scoop/apps/ssh-agent-wsl/current/ssh-agent-wsl ]; then
+          eval $(/mnt/c/Users/avoit/scoop/apps/ssh-agent-wsl/current/ssh-agent-wsl -r)
+        fi
 
 	      # if [[ -f /nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh ]]; then
 	      #   . /nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh
