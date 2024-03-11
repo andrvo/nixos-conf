@@ -55,6 +55,7 @@
       virt = localpkgs.lib.nixosSystem {
         system = "aarch64-linux";
         modules = [
+          /etc/nixos/hardware-configuration.nix
           home-manager.nixosModules.home-manager {
             home-manager = {
               useGlobalPkgs = true;
@@ -66,8 +67,10 @@
           localConf
           {
             networking.hostName = "nixa";
+            users.users.${user} = { isNormalUser = true; group = "${user}"; };
+            users.groups.${user} = {};
           }
-        ] ++ localpkgs.lib.optional (builtins.pathExists /etc/nixos/hardware-configuration.nix) /etc/nixos/hardware-configuration.nix;
+        ] # ++ localpkgs.lib.optional (builtins.pathExists /etc/nixos/hardware-configuration.nix) /etc/nixos/hardware-configuration.nix;
       };
     };
   };
