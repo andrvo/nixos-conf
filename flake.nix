@@ -71,6 +71,9 @@
             users.groups.${user} = {};
             boot.loader.systemd-boot.enable = true;
             boot.loader.efi.canTouchEfiVariables = true;
+            networking.firewall.enable = false;
+            networking.enableIPv6 = false;
+            services.openssh.enable = true;
           }
         ]; # ++ localpkgs.lib.optional (builtins.pathExists /etc/nixos/hardware-configuration.nix) /etc/nixos/hardware-configuration.nix;
       };
