@@ -4,7 +4,8 @@
   inputs = {
     wslin.url = "github:nix-community/NixOS-WSL";
     # pkgs.url = "github:NixOS/nixpkgs/nixos-23.11";
-    localpkgs.url = "nixpkgs";
+    # localpkgs.url = "nixpkgs";
+    localpkgs.url = "github:NixOS/nixpkgs/nixos-23.11";
     wslpkgs.follows = "wslin/nixpkgs";
     home-manager.url = "github:nix-community/home-manager";
   };
