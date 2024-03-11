@@ -82,11 +82,11 @@ in
 	      pull.rebase = true;
 	      # rebase.autoStash = true;
 	    };
-      # alias = {
-      #   ci = "commit";
-      #   st = "status";
-      #   sta = "status";
-      # };
+      aliases = {
+        ci = "commit";
+        st = "status";
+        sta = "status";
+      };
 	  };
 
 	  vim = {
