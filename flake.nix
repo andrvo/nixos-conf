@@ -70,7 +70,7 @@
             users.users.${user} = { isNormalUser = true; group = "${user}"; };
             users.groups.${user} = {};
           }
-        ] # ++ localpkgs.lib.optional (builtins.pathExists /etc/nixos/hardware-configuration.nix) /etc/nixos/hardware-configuration.nix;
+        ]; # ++ localpkgs.lib.optional (builtins.pathExists /etc/nixos/hardware-configuration.nix) /etc/nixos/hardware-configuration.nix;
       };
     };
   };
