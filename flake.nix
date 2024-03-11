@@ -26,10 +26,10 @@
         system.stateVersion = config.system.nixos.release;
         programs.zsh.enable = true;
         security.sudo.wheelNeedsPassword = false;
+        users.defaultUserShell = pkgs.zsh;
       };
       wslConf = { config, pkgs, ... }:
       {
-        users.defaultUserShell = pkgs.zsh;
         networking.hostName = "bumblbee";
         wsl.enable = true;
         wsl.defaultUser = "${user}";
@@ -67,13 +67,20 @@
           localConf
           {
             networking.hostName = "nixa";
-            users.users.${user} = { isNormalUser = true; group = "${user}"; };
-            users.groups.${user} = {};
+            users.users.${user} = { 
+              isNormalUser = true; 
+              # group = "${user}"; 
+              extraGroups = [ "wheel" ]; 
+              openssh.authorizedKeys.keys = [ "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIOVUner0lOEkh4O9NqWGCkLxhtnEqd7ydNRcwEmiqqAY av@gyrus.biz" ];
+            };
+            # users.groups.${user} = {};
             boot.loader.systemd-boot.enable = true;
             boot.loader.efi.canTouchEfiVariables = true;
             networking.firewall.enable = false;
             networking.enableIPv6 = false;
             services.openssh.enable = true;
+            security.sudo.wheelNeedsPassword = false;
+            
           }
         ]; # ++ localpkgs.lib.optional (builtins.pathExists /etc/nixos/hardware-configuration.nix) /etc/nixos/hardware-configuration.nix;
       };
