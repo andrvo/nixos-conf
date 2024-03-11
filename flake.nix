@@ -52,7 +52,7 @@
           wslConf
         ];
       };
-      virt = localpkgs.lig.nixosSystem {
+      virt = localpkgs.lib.nixosSystem {
         system = "aarch64-linux";
         modules = [
           home-manager.nixosModules.home-manager {
