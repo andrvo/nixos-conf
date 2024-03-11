@@ -10,7 +10,7 @@ in
   home = {
     enableNixpkgsReleaseCheck = false;
     username = "${user}";
-    homeDirectory = "/home/${user}";
+    homeDirectory = lib.mkForce "/home/${user}";
     packages = pkgs.callPackage ./packages.nix {};
     # file = shared-files // import ./files.nix { inherit user; };
     file = import ./files.nix { inherit user pkgs; };
