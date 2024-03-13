@@ -48,6 +48,11 @@
           vim
         ];
       };
+      dockerConf = { config, ... }:
+      {
+        virtualisation.docker.enable = true;
+        users.extraGroups.docker.members = [ "${user}" ];
+      };
       userConf = { config, ...}:
       {
         users.users.${user} = { 
@@ -93,6 +98,7 @@
           localConf
           userConf
           vmConf
+          dockerConf
           {
             networking.hostName = "nixy";
           }
