@@ -1,4 +1,4 @@
-{ username }: { pkgs, modulesPath, ... }: {
+{ user }: { pkgs, modulesPath, ... }: {
   imports = [
     "${modulesPath}/virtualisation/azure-common.nix"
   ];
