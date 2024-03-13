@@ -56,7 +56,7 @@
       azure = localpkgs.lib.nixosSystem {
         system = "x86_64-linux";
         modules = [
-          "${modulesPath}/virtualisation/azure-common.nix"
+          (import ./azure.nix { inherit user; })
           localConf
           {
             networking.hostName = "nixy";
@@ -67,25 +67,6 @@
               openssh.authorizedKeys.keys = [ "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIOVUner0lOEkh4O9NqWGCkLxhtnEqd7ydNRcwEmiqqAY av@gyrus.biz" ];
             };
             # users.groups.${user} = {};
-            boot.loader.systemd-boot.enable = true;
-            boot.loader.efi.canTouchEfiVariables = true;
-            boot.growPartition = true;
-            networking.firewall.enable = false;
-            networking.enableIPv6 = false;
-
-            fileSystems."/boot" = {
-              device = "/dev/disk/by-label/ESP";
-              fsType = "vfat";
-            };
-
-            virtualisation.azure.agent.enable = true;
-            services.cloud-init.enable = true;
-            systemd.services.cloud-config.serviceConfig = {
-              Restart = "on-failure";
-            };
-            services.cloud-init.network.enable = true;
-            networking.useDHCP = false;
-            networking.useNetworkd = true;
             
             services.openssh.enable = true;
             security.sudo.wheelNeedsPassword = false;
