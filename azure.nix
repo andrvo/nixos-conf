@@ -23,5 +23,11 @@
   networking.useDHCP = false;
   networking.useNetworkd = true;
 
+  environment.systemPackages = with pkgs; [
+    curl
+    git
+    vim
+  ];
+
 }
 

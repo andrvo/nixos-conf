@@ -71,12 +71,6 @@
             services.openssh.enable = true;
             security.sudo.wheelNeedsPassword = false;
             
-            environment.systemPackages = with pkgs; [
-              curl
-              git
-              vim
-            ];
-
             nix.settings = {
               warn-dirty = false;
               experimental-features = [ "nix-command" "flakes" ];
