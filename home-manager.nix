@@ -1,11 +1,5 @@
-{ config, pkgs, lib, ... }:
+{user, name, email}: { config, pkgs, lib, ... }:
 
-let
-  user = "mccloud";
-  name = "Andr Vo";
-  email = "av@gyrus.biz";
-  # shared-files = import ../shared/files.nix { inherit config pkgs; };
-in
 {
   home = {
     enableNixpkgsReleaseCheck = false;

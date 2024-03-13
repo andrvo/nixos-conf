@@ -1,5 +1,5 @@
 {
-  description = "Customized WSL";
+  description = "Customized DEV workspaces";
 
   inputs = {
     wslin.url = "github:nix-community/NixOS-WSL";
@@ -13,10 +13,10 @@
   outputs = { self, wslin, wslpkgs, localpkgs, home-manager }: 
   let 
     user = "mccloud";
+    email = "av@gyrus.biz";
+    name = "Andr Vo";
   in
   {
-
-    nixosModules.default = wslin.nixosModules.wsl;
     nixosConfigurations = let 
       localConf = { config, pkgs, ... }: 
       {
@@ -31,10 +31,32 @@
       };
       wslConf = { config, pkgs, ... }:
       {
-        networking.hostName = "bumblbee";
         wsl.enable = true;
         wsl.defaultUser = "${user}";
         # wsl.docker-desktop.enable = true;
+      };
+      vmConf = { pkgs, ... }:
+      {
+        boot.loader.systemd-boot.enable = true;
+        boot.loader.efi.canTouchEfiVariables = true;
+        networking.firewall.enable = false;
+        networking.enableIPv6 = false;
+        services.openssh.enable = true;
+        environment.systemPackages = with pkgs; [
+          curl
+          git
+          vim
+        ];
+      };
+      userConf = {}:
+      {
+        users.users.${user} = { 
+          isNormalUser = true; 
+          # group = "${user}"; 
+          extraGroups = [ "wheel" ]; 
+          openssh.authorizedKeys.keys = [ "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIOVUner0lOEkh4O9NqWGCkLxhtnEqd7ydNRcwEmiqqAY av@gyrus.biz" ];
+        };
+        # users.groups.${user} = {};
       };
     in 
     {
@@ -45,72 +67,48 @@
             home-manager = {
               useGlobalPkgs = true;
               useUserPackages = true;
-              users.${user} = import ./home-manager.nix;
+              users.${user} = (import ./home-manager.nix { inherit user name email; });
             };
           }
-          self.nixosModules.default
+          wslin.nixosModules.wsl
           localConf
           wslConf
+          {
+            networking.hostName = "bumblbee";
+          }
         ];
       };
+
       azure = localpkgs.lib.nixosSystem {
         system = "x86_64-linux";
         modules = [
-          (import ./azure.nix { inherit user; })
+          ./azure.nix
           localConf
+          userConf
+          vmConf
           {
             networking.hostName = "nixy";
-            users.users.${user} = { 
-              isNormalUser = true; 
-              # group = "${user}"; 
-              extraGroups = [ "wheel" ]; 
-              openssh.authorizedKeys.keys = [ "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIOVUner0lOEkh4O9NqWGCkLxhtnEqd7ydNRcwEmiqqAY av@gyrus.biz" ];
-            };
-            # users.groups.${user} = {};
-            
-            services.openssh.enable = true;
-            security.sudo.wheelNeedsPassword = false;
-            
-            nix.settings = {
-              warn-dirty = false;
-              experimental-features = [ "nix-command" "flakes" ];
-              trusted-users = [ user ];
-            };
-
           }
         ]; # ++ localpkgs.lib.optional (builtins.pathExists /etc/nixos/hardware-configuration.nix) /etc/nixos/hardware-configuration.nix;
       };
+
       virt = localpkgs.lib.nixosSystem {
         system = "aarch64-linux";
         modules = [
-          /etc/nixos/hardware-configuration.nix
           home-manager.nixosModules.home-manager {
             home-manager = {
               useGlobalPkgs = true;
               useUserPackages = true;
-              users.${user} = import ./home-manager.nix;
+              users.${user} = (import ./home-manager.nix { inherit user name email; });
             };
           }
-          self.nixosModules.default
           localConf
+          userConf
+          vmConf
           {
             networking.hostName = "nixa";
-            users.users.${user} = { 
-              isNormalUser = true; 
-              # group = "${user}"; 
-              extraGroups = [ "wheel" ]; 
-              openssh.authorizedKeys.keys = [ "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIOVUner0lOEkh4O9NqWGCkLxhtnEqd7ydNRcwEmiqqAY av@gyrus.biz" ];
-            };
-            # users.groups.${user} = {};
-            boot.loader.systemd-boot.enable = true;
-            boot.loader.efi.canTouchEfiVariables = true;
-            networking.firewall.enable = false;
-            networking.enableIPv6 = false;
-            services.openssh.enable = true;
-            security.sudo.wheelNeedsPassword = false;
-            
           }
-        ]; # ++ localpkgs.lib.optional (builtins.pathExists /etc/nixos/hardware-configuration.nix) /etc/nixos/hardware-configuration.nix;
+        ] ++ localpkgs.lib.optional (builtins.pathExists /etc/nixos/hardware-configuration.nix) /etc/nixos/hardware-configuration.nix;
       };
     };
   };
