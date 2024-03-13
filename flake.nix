@@ -48,7 +48,7 @@
           vim
         ];
       };
-      userConf = {}:
+      userConf = { config, ...}:
       {
         users.users.${user} = { 
           isNormalUser = true; 
