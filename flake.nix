@@ -63,6 +63,7 @@
       wsl = wslpkgs.lib.nixosSystem {
         system = "x86_64-linux";
         modules = [
+          wslin.nixosModules.wsl
           home-manager.nixosModules.home-manager {
             home-manager = {
               useGlobalPkgs = true;
@@ -70,7 +71,6 @@
               users.${user} = (import ./home-manager.nix { inherit user name email; });
             };
           }
-          wslin.nixosModules.wsl
           localConf
           wslConf
           {
@@ -83,13 +83,20 @@
         system = "x86_64-linux";
         modules = [
           ./azure.nix
+          home-manager.nixosModules.home-manager {
+            home-manager = {
+              useGlobalPkgs = true;
+              useUserPackages = true;
+              users.${user} = (import ./home-manager.nix { inherit user name email; });
+            };
+          }
           localConf
           userConf
           vmConf
           {
             networking.hostName = "nixy";
           }
-        ]; # ++ localpkgs.lib.optional (builtins.pathExists /etc/nixos/hardware-configuration.nix) /etc/nixos/hardware-configuration.nix;
+        ];
       };
 
       virt = localpkgs.lib.nixosSystem {
