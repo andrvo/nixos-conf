@@ -61,6 +61,12 @@
 	    '';
 	  };
 
+    mercurial = {
+      enable = true;
+      userName = name;
+      userEmail = email;
+    };
+
 	  git = {
 	    enable = true;
 	    ignores = [ "*.swp" ];

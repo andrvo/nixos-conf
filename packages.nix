@@ -36,7 +36,7 @@ with pkgs; [
   unzip
 
   git
-  mercurialFull
+  mercurial
   helix
 
   azure-cli
