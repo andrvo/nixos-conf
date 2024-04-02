@@ -1,4 +1,4 @@
-{user, name, email}: { config, pkgs, lib, unstablepkgs, system, ... }:
+{user, name, email}: { config, pkgs, lib, unstablepkgs, ... }:
 
 {
   home = {
@@ -14,7 +14,7 @@
   programs = {
     helix = {
       enable = true;
-      package = unstablepkgs.legacyPackages."${system}".helix;
+      package = unstablepkgs.legacyPackages.${pkgs.system}.helix;
     };
 
 	  zsh = {

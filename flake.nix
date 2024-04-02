@@ -75,7 +75,7 @@
               useGlobalPkgs = true;
               useUserPackages = true;
               users.${user} = (import ./home-manager.nix { inherit user name email; });
-              extraSpecialArgs = { inherit unstablepkgs; system = "x86_64-linux"; };
+              extraSpecialArgs = { inherit unstablepkgs; };
             };
           }
           localConf
@@ -95,7 +95,7 @@
               useGlobalPkgs = true;
               useUserPackages = true;
               users.${user} = (import ./home-manager.nix { inherit user name email; });
-              extraSpecialArgs = { inherit unstablepkgs; system = "x86_64-linux"; };
+              extraSpecialArgs = { inherit unstablepkgs; };
             };
           }
           localConf
@@ -116,7 +116,7 @@
               useGlobalPkgs = true;
               useUserPackages = true;
               users.${user} = (import ./home-manager.nix { inherit user name email; });
-              extraSpecialArgs = { inherit unstablepkgs; system = "aarch64-linux"; };
+              extraSpecialArgs = { inherit unstablepkgs; };
             };
           }
           localConf
