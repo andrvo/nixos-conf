@@ -37,7 +37,7 @@ with pkgs; [
 
   git
   mercurial
-  helix
+  # helix
 
   azure-cli
   kubectl

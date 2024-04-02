@@ -6,11 +6,12 @@
     # pkgs.url = "github:NixOS/nixpkgs/nixos-23.11";
     # localpkgs.url = "nixpkgs";
     localpkgs.url = "github:NixOS/nixpkgs/nixos-23.11";
+    unstablepkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
     wslpkgs.follows = "wslin/nixpkgs";
     home-manager.url = "github:nix-community/home-manager";
   };
 
-  outputs = { self, wslin, wslpkgs, localpkgs, home-manager }: 
+  outputs = { self, wslin, wslpkgs, localpkgs, unstablepkgs, home-manager }: 
   let 
     user = "mccloud";
     email = "av@gyrus.biz";
@@ -74,6 +75,7 @@
               useGlobalPkgs = true;
               useUserPackages = true;
               users.${user} = (import ./home-manager.nix { inherit user name email; });
+              extraSpecialArgs = { inherit unstablepkgs; system = "x86_64-linux"; };
             };
           }
           localConf
@@ -93,6 +95,7 @@
               useGlobalPkgs = true;
               useUserPackages = true;
               users.${user} = (import ./home-manager.nix { inherit user name email; });
+              extraSpecialArgs = { inherit unstablepkgs; system = "x86_64-linux"; };
             };
           }
           localConf
@@ -113,6 +116,7 @@
               useGlobalPkgs = true;
               useUserPackages = true;
               users.${user} = (import ./home-manager.nix { inherit user name email; });
+              extraSpecialArgs = { inherit unstablepkgs; system = "aarch64-linux"; };
             };
           }
           localConf

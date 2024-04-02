@@ -1,24 +1,29 @@
-{user, name, email}: { config, pkgs, lib, ... }:
+{user, name, email}: { config, pkgs, lib, unstablepkgs, system, ... }:
 
 {
   home = {
     enableNixpkgsReleaseCheck = false;
     username = "${user}";
     homeDirectory = lib.mkForce "/home/${user}";
-    packages = pkgs.callPackage ./packages.nix {};
+    packages = pkgs.callPackage ./packages.nix { };
     # file = shared-files // import ./files.nix { inherit user; };
     file = import ./files.nix { inherit user pkgs; };
     stateVersion = "23.11";
   };
 
   programs = {
+    helix = {
+      enable = true;
+      package = unstablepkgs.legacyPackages."${system}".helix;
+    };
+
 	  zsh = {
 	    enable = true;
 	    autocd = false;
 
       dotDir = ".config/zsh";
       enableCompletion = true;
-      enableAutosuggestions = true;
+      autosuggestion.enable = true;
       shellAliases = {
         l = "ls -alh";
         ll = "ls -l";
