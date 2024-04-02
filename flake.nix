@@ -11,8 +11,9 @@
     home-manager.url = "github:nix-community/home-manager";
   };
 
-  outputs = { self, wslin, wslpkgs, localpkgs, unstablepkgs, home-manager }: 
+  outputs = { self, wslin, wslpkgs, localpkgs, unstablepkgs, home-manager }@inputs: 
   let 
+    inherit (self) outputs;
     user = "mccloud";
     email = "av@gyrus.biz";
     name = "Andr Vo";
@@ -68,6 +69,7 @@
     {
       wsl = wslpkgs.lib.nixosSystem {
         system = "x86_64-linux";
+        specialArgs = { inherit inputs outputs; };
         modules = [
           wslin.nixosModules.wsl
           home-manager.nixosModules.home-manager {
@@ -75,7 +77,7 @@
               useGlobalPkgs = true;
               useUserPackages = true;
               users.${user} = (import ./home-manager.nix { inherit user name email; });
-              extraSpecialArgs = { inherit unstablepkgs; };
+              extraSpecialArgs = { inherit inputs outputs; };
             };
           }
           localConf
@@ -88,6 +90,7 @@
 
       azure = localpkgs.lib.nixosSystem {
         system = "x86_64-linux";
+        specialArgs = { inherit inputs outputs; };
         modules = [
           ./azure.nix
           home-manager.nixosModules.home-manager {
@@ -95,7 +98,7 @@
               useGlobalPkgs = true;
               useUserPackages = true;
               users.${user} = (import ./home-manager.nix { inherit user name email; });
-              extraSpecialArgs = { inherit unstablepkgs; };
+              extraSpecialArgs = { inherit inputs outputs; };
             };
           }
           localConf
@@ -110,13 +113,14 @@
 
       virt = localpkgs.lib.nixosSystem {
         system = "aarch64-linux";
+        specialArgs = { inherit inputs outputs; };
         modules = [
           home-manager.nixosModules.home-manager {
             home-manager = {
               useGlobalPkgs = true;
               useUserPackages = true;
               users.${user} = (import ./home-manager.nix { inherit user name email; });
-              extraSpecialArgs = { inherit unstablepkgs; };
+              extraSpecialArgs = { inherit inputs outputs; };
             };
           }
           localConf

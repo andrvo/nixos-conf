@@ -1,6 +1,7 @@
-{user, name, email}: { config, pkgs, lib, unstablepkgs, ... }:
+{user, name, email}: { inputs, outputs, config, pkgs, lib, ... }:
 
 {
+
   home = {
     enableNixpkgsReleaseCheck = false;
     username = "${user}";
@@ -14,7 +15,7 @@
   programs = {
     helix = {
       enable = true;
-      package = unstablepkgs.legacyPackages.${pkgs.system}.helix;
+      package = inputs.unstablepkgs.legacyPackages.${pkgs.system}.helix;
       settings = {
         theme = "kanagawa";
         editor = {
