@@ -2,21 +2,21 @@
 
 let
   home           = builtins.getEnv "HOME";
-	hx_confDir = "${home}/.config/helix";
+	# hx_confDir = "${home}/.config/helix";
 	zsh_confDir = "${home}/.config/zsh";
 in
 {
-	"${hx_confDir}/config.toml" = {
-		text = ''
-			theme = 'kanagawa'
+	# "${hx_confDir}/config.toml" = {
+	# 	text = ''
+	# 		theme = 'kanagawa'
 
-			[editor]
-			true-color = true
-			line-number = "relative"
-			lsp.display-inlay-hints = true
-			soft-wrap.enable = true
-		'';
-	};
+	# 		[editor]
+	# 		true-color = true
+	# 		line-number = "relative"
+	# 		lsp.display-inlay-hints = true
+	# 		soft-wrap.enable = true
+	# 	'';
+	# };
 	
 	"${zsh_confDir}/.zprofile" = {
 		executable = false;

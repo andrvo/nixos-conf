@@ -15,6 +15,15 @@
     helix = {
       enable = true;
       package = unstablepkgs.legacyPackages.${pkgs.system}.helix;
+      settings = {
+        theme = "kanagawa";
+        editor = {
+    			true-color = true;
+    			line-number = "relative";
+    			lsp.display-inlay-hints = true;
+    			soft-wrap.enable = true;
+        };
+      };
     };
 
 	  zsh = {
