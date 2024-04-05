@@ -9,9 +9,12 @@
     unstablepkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
     wslpkgs.follows = "wslin/nixpkgs";
     home-manager.url = "github:nix-community/home-manager";
+    agenix.url = "github:ryantm/agenix";
+    agenix.inputs.nixpkgs.follows = "wslin/nixpkgs"; # this comes to bumblbee only for now
+    agenix.inputs.darwin.follows = "";
   };
 
-  outputs = { self, wslin, wslpkgs, localpkgs, unstablepkgs, home-manager }@inputs: 
+  outputs = { self, wslin, wslpkgs, localpkgs, unstablepkgs, home-manager, agenix }@inputs: 
   let 
     inherit (self) outputs;
     user = "mccloud";
@@ -84,6 +87,7 @@
           wslConf
           {
             networking.hostName = "bumblbee";
+            environment.systemPackages = [ agenix.packages.x86_64-linux.default ];
           }
         ];
       };
