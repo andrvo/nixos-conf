@@ -12,6 +12,7 @@ with pkgs; [
   tree
   unixtools.ifconfig
   unixtools.netstat
+  dig
 
   # General packages for development and system management
   btop
