@@ -132,6 +132,8 @@
           vmConf
           {
             networking.hostName = "nixa";
+            environment.systemPackages = [ agenix.packages.aarch64-linux.default ];
+            hardware.parallels.enable = true;
           }
         ] ++ localpkgs.lib.optional (builtins.pathExists /etc/nixos/hardware-configuration.nix) /etc/nixos/hardware-configuration.nix;
       };
