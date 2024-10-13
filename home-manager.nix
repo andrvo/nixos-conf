@@ -137,6 +137,12 @@
 	    enable = true;
 	    terminal = "screen-256color";
 	  };
+
+    yazi = {
+      enable = true;
+      enableZshIntegration = true;
+      # flavors = 
+    }
 	};
 }
 
