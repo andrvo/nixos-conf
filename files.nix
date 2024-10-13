@@ -1,10 +1,8 @@
 { user, ... }:
 
 let
-  home           = builtins.getEnv "HOME";
-	# hx_confDir = "${home}/.config/helix";
-	zsh_confDir = "${home}/.config/zsh";
-	yazi_confDir = "${home}/.config/yazi";
+	zsh_confDir = ".config/zsh";
+	yazi_confDir = ".config/yazi";
 in
 {
 	# "${hx_confDir}/config.toml" = {
@@ -20,6 +18,7 @@ in
 	# };
 	
 	"${zsh_confDir}/.zprofile" = {
+		enable = true;
 		executable = false;
 		text = ''
 			if [ "X$TMUX" = "X" ];
@@ -32,6 +31,7 @@ in
 	};
 
 	"${yazi_confDir}/theme.toml" = {
+		enable = true;
 		executable = false;
 		text = ''
 # from https://github.com/dangooddd/kanagawa.yazi/blob/main/flavor.toml
