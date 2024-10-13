@@ -50,6 +50,8 @@
       '';
 
 	    initExtraFirst = ''
+        export EDITOR=hx
+        
         # adding the SSH key
         if [ -e /mnt/c/Users/avoit/scoop/apps/ssh-agent-wsl/current/ssh-agent-wsl ]; then
           eval $(/mnt/c/Users/avoit/scoop/apps/ssh-agent-wsl/current/ssh-agent-wsl -r)

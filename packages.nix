@@ -42,5 +42,7 @@ with pkgs; [
   azure-cli
   kubectl
 
+  yazi
+
 ]
 
