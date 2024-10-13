@@ -142,7 +142,7 @@
       enable = true;
       enableZshIntegration = true;
       # flavors = 
-    }
+    };
 	};
 }
 
