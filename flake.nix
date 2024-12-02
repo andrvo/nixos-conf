@@ -5,7 +5,7 @@
     wslin.url = "github:nix-community/NixOS-WSL";
     # pkgs.url = "github:NixOS/nixpkgs/nixos-23.11";
     # localpkgs.url = "nixpkgs";
-    localpkgs.url = "github:NixOS/nixpkgs/nixos-24.05";
+    localpkgs.url = "github:NixOS/nixpkgs/nixos-24.11";
     unstablepkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
     wslpkgs.follows = "wslin/nixpkgs";
     home-manager.url = "github:nix-community/home-manager";
@@ -13,7 +13,6 @@
     agenix.inputs.nixpkgs.follows = "wslin/nixpkgs"; # this comes to bumblbee only for now
     agenix.inputs.darwin.follows = "";
   };
-
   outputs = { self, wslin, wslpkgs, localpkgs, unstablepkgs, home-manager, agenix }@inputs: 
   let 
     inherit (self) outputs;
