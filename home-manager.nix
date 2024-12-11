@@ -13,6 +13,12 @@
   };
 
   programs = {
+    zellij = {
+      enable = true;
+      enableBashIntegration = true;
+      enableZshIntegration = true;
+    };
+
     helix = {
       enable = true;
       package = inputs.unstablepkgs.legacyPackages.${pkgs.system}.helix;
