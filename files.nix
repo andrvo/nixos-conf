@@ -27,6 +27,13 @@ in
 			else
 	        export SSH_AUTH_SOCK="/tmp/ssh-agent-$USER-tmux"
 			fi
+
+			if [ "X$ZELLIJ" = "X" ];
+			then
+	        test $SSH_AUTH_SOCK && ln -sf "$SSH_AUTH_SOCK" "/tmp/ssh-agent-$USER-zellij"
+			else
+	        export SSH_AUTH_SOCK="/tmp/ssh-agent-$USER-zellij"
+			fi
 		'';
 	};
 
