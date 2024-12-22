@@ -17,6 +17,7 @@
       enable = true;
       # enableBashIntegration = true;
       # enableZshIntegration = true;
+      package = inputs.unstablepkgs.legacyPackages.${pkgs.system}.zellij;
     };
 
     helix = {
@@ -155,6 +156,7 @@
       enable = true;
       enableZshIntegration = true;
       # flavors = 
+      package = inputs.unstablepkgs.legacyPackages.${pkgs.system}.yazi;
     };
 	};
 }
