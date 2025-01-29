@@ -2,7 +2,7 @@
   description = "Customized DEV workspaces";
 
   inputs = {
-    wslin.url = "github:nix-community/NixOS-WSL";
+    wslin.url = "github:andrvo/NixOS-WSL"; # private fork for testing
     # pkgs.url = "github:NixOS/nixpkgs/nixos-23.11";
     # localpkgs.url = "nixpkgs";
     localpkgs.url = "github:NixOS/nixpkgs/nixos-24.11";
