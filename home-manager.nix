@@ -30,6 +30,10 @@
     			line-number = "relative";
     			lsp.display-inlay-hints = true;
     			soft-wrap.enable = true;
+          end-of-line-diagnostics = "hint";
+          inline-diagnostics = {
+            cursor-line = "error";
+          };
         };
       };
     };
