@@ -15,8 +15,8 @@
   programs = {
     zellij = {
       enable = true;
-      # enableBashIntegration = true;
-      # enableZshIntegration = true;
+      enableBashIntegration = false;
+      enableZshIntegration = false;
       package = inputs.unstablepkgs.legacyPackages.${pkgs.system}.zellij;
     };
 
