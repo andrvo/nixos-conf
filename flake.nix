@@ -8,7 +8,7 @@
     localpkgs.url = "github:NixOS/nixpkgs/nixos-24.11";
     unstablepkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
     wslpkgs.follows = "wslin/nixpkgs";
-    home-manager.url = "github:nix-community/home-manager";
+    home-manager.url = "github:nix-community/home-manager/release-24.11";
     home-manager.inputs.nixpkgs.follows = "localpkgs";
     agenix.url = "github:ryantm/agenix";
     agenix.inputs.nixpkgs.follows = "wslin/nixpkgs"; # this comes to bumblbee only for now
