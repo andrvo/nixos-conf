@@ -1,7 +1,6 @@
 {user, name, email}: { inputs, outputs, config, pkgs, lib, ... }:
 
 {
-
   home = {
     enableNixpkgsReleaseCheck = false;
     username = "${user}";
@@ -9,7 +8,7 @@
     packages = pkgs.callPackage ./packages.nix { };
     # file = shared-files // import ./files.nix { inherit user; };
     file = import ./files.nix { inherit user pkgs; };
-    stateVersion = "23.11";
+    stateVersion = "24.11";
   };
 
   programs = {
@@ -126,10 +125,10 @@
       };
 	  };
 
-	  vim = {
-	    enable = true;
-	    settings = { ignorecase = true; };
-	     };
+	  # vim = {
+	  #   enable = true;
+	  #   settings = { ignorecase = true; };
+	  #    };
 
 	  # ssh = {
 	  #   enable = true;
@@ -159,7 +158,6 @@
     yazi = {
       enable = true;
       enableZshIntegration = true;
-      # flavors = 
       package = inputs.unstablepkgs.legacyPackages.${pkgs.system}.yazi;
     };
 	};

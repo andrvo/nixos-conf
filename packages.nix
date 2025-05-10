@@ -7,15 +7,13 @@ with pkgs; [
 
   bc # old school calculator
   # Testing and development tools
-  direnv
+  # direnv
 
-  tree
   unixtools.ifconfig
   unixtools.netstat
   dig
 
   # General packages for development and system management
-  btop
   coreutils
   killall
   # openssh
@@ -27,11 +25,7 @@ with pkgs; [
   # docker-compose
 
   # Text and terminal utilities
-  htop
-  hunspell
-  iftop
   jq
-  ripgrep
   tree
   tmux
   unzip
