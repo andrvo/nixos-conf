@@ -51,7 +51,8 @@
         k = "kubectl";
       };
 
-      initExtra = ''
+      initExtra = # sh
+      ''
         PROMPT='%# '
         autoload -U promptinit && promptinit
         prompt bart
@@ -59,7 +60,8 @@
         alias 0='sudo'
       '';
 
-	    initExtraFirst = ''
+	    initExtraFirst = # sh
+      ''
         export EDITOR=hx
         
         # adding the SSH key

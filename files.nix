@@ -20,7 +20,8 @@ in
 	"${zsh_confDir}/.zprofile" = {
 		enable = true;
 		executable = false;
-		text = ''
+		text = # sh
+		''
 			if [ "X$TMUX" = "X" ];
 			then
 	        test $SSH_AUTH_SOCK && ln -sf "$SSH_AUTH_SOCK" "/tmp/ssh-agent-$USER-tmux"
@@ -33,7 +34,8 @@ in
 	"${yazi_confDir}/theme.toml" = {
 		enable = true;
 		executable = false;
-		text = ''
+		text = # toml
+''
 # from https://github.com/dangooddd/kanagawa.yazi/blob/main/flavor.toml
 # general 
 [manager]
