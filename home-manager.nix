@@ -60,7 +60,7 @@
         alias 0='sudo'
       '';
 
-	    initExtraFirst = # sh
+	    initContent = lib.mkBefore # sh
       ''
         export EDITOR=hx
         
