@@ -53,15 +53,6 @@
 
       initContent = # sh
       ''
-        PROMPT='%# '
-        autoload -U promptinit && promptinit
-        prompt bart
-        umask 022
-        alias 0='sudo'
-      '';
-
-	    initContent = lib.mkBefore # sh
-      ''
         export EDITOR=hx
         
         # adding the SSH key
@@ -94,7 +85,13 @@
   			else
   	        export SSH_AUTH_SOCK="/tmp/ssh-agent-$USER-zellij"
   			fi
-	    '';
+
+        PROMPT='%# '
+        autoload -U promptinit && promptinit
+        prompt bart
+        umask 022
+        alias 0='sudo'
+      '';
 	  };
 
     mercurial = {
