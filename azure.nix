@@ -10,7 +10,12 @@
     fsType = "vfat";
  };
 
-  virtualisation.azure.agent.enable = true;
+  fileSystems."/" = {
+    device = "/dev/disk/by-label/nixos";
+    fsType = "ext4";
+ };
+
+  services.waagent.enable = true;
   services.cloud-init.enable = true;
   systemd.services.cloud-config.serviceConfig = {
     Restart = "on-failure";

@@ -51,7 +51,7 @@
         k = "kubectl";
       };
 
-      initExtra = # sh
+      initContent = # sh
       ''
         PROMPT='%# '
         autoload -U promptinit && promptinit
