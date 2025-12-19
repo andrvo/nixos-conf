@@ -103,12 +103,12 @@
 	  git = {
 	    enable = true;
 	    ignores = [ "*.swp" ];
-	    userName = name;
-	    userEmail = email;
 	    lfs = {
 	      enable = true;
 	    };
-	    extraConfig = {
+	    settings = {
+	      user.name = name;
+	      user.email = email;
 	      init.defaultBranch = "master";
 	      core = { 
 		    editor = "hx";
@@ -116,12 +116,12 @@
 	      };
 	      pull.rebase = true;
 	      # rebase.autoStash = true;
+        alias = {
+          ci = "commit";
+          st = "status";
+          sta = "status";
+        };
 	    };
-      aliases = {
-        ci = "commit";
-        st = "status";
-        sta = "status";
-      };
 	  };
 
 	  # vim = {
