@@ -41,7 +41,7 @@
 	    enable = true;
 	    autocd = false;
 
-      dotDir = "${config.home.homeDirectory}.config/zsh";
+      dotDir = "${config.home.homeDirectory}/.config/zsh";
       enableCompletion = true;
       autosuggestion.enable = true;
       shellAliases = {
