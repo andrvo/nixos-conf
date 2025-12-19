@@ -16,12 +16,12 @@
       enable = true;
       enableBashIntegration = false;
       enableZshIntegration = false;
-      package = inputs.unstablepkgs.legacyPackages.${pkgs.system}.zellij;
+      package = inputs.unstablepkgs.legacyPackages.${pkgs.stdenv.hostPlatform.system}.zellij;
     };
 
     helix = {
       enable = true;
-      package = inputs.unstablepkgs.legacyPackages.${pkgs.system}.helix;
+      package = inputs.unstablepkgs.legacyPackages.${pkgs.stdenv.hostPlatform.system}.helix;
       settings = {
         theme = "kanagawa";
         editor = {
@@ -157,7 +157,7 @@
     yazi = {
       enable = true;
       enableZshIntegration = true;
-      package = inputs.unstablepkgs.legacyPackages.${pkgs.system}.yazi;
+      package = inputs.unstablepkgs.legacyPackages.${pkgs.stdenv.hostPlatform.system}.yazi;
     };
 	};
 }
